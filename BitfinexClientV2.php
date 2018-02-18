@@ -68,7 +68,7 @@ class BitfinexClientV2
         return $this->send_public_request($request, $data);
     }
 
-    public function get_tickers_formated($symbols = array('tBTCUSD'))
+    public function get_tickers_formatted($symbols = array('tBTCUSD'))
     {
         $request = $this->endpoint('tickers');
         $data = array('symbols' => implode(",", $symbols));
@@ -77,40 +77,40 @@ class BitfinexClientV2
 
         $tickers = array();
         foreach ($tickers_pure as $ticker_pure) {
-            $formated_ticker = array();
+            $formatted_ticker = array();
 
             if (substr($ticker_pure[0], 0, 1) == "t") {
-                $formated_ticker['ticker_type'] = 'trading';
-                $formated_ticker['symbol'] = $ticker_pure[0];
-                $formated_ticker['market'] = substr($ticker_pure[0], 1, strlen($ticker_pure[0]) - 1);
-                $formated_ticker['bid'] = $ticker_pure[1];
-                $formated_ticker['bid_size'] = $ticker_pure[2];
-                $formated_ticker['ask'] = $ticker_pure[3];
-                $formated_ticker['ask_size'] = $ticker_pure[4];
-                $formated_ticker['daily_change'] = $ticker_pure[5];
-                $formated_ticker['daily_change_perc'] = $ticker_pure[6];
-                $formated_ticker['last_price'] = $ticker_pure[7];
-                $formated_ticker['volume'] = $ticker_pure[8];
-                $formated_ticker['hight'] = $ticker_pure[9];
-                $formated_ticker['low'] = $ticker_pure[10];
+                $formatted_ticker['ticker_type'] = 'trading';
+                $formatted_ticker['symbol'] = $ticker_pure[0];
+                $formatted_ticker['market'] = substr($ticker_pure[0], 1, strlen($ticker_pure[0]) - 1);
+                $formatted_ticker['bid'] = $ticker_pure[1];
+                $formatted_ticker['bid_size'] = $ticker_pure[2];
+                $formatted_ticker['ask'] = $ticker_pure[3];
+                $formatted_ticker['ask_size'] = $ticker_pure[4];
+                $formatted_ticker['daily_change'] = $ticker_pure[5];
+                $formatted_ticker['daily_change_perc'] = $ticker_pure[6];
+                $formatted_ticker['last_price'] = $ticker_pure[7];
+                $formatted_ticker['volume'] = $ticker_pure[8];
+                $formatted_ticker['hight'] = $ticker_pure[9];
+                $formatted_ticker['low'] = $ticker_pure[10];
             } elseif (substr($ticker_pure[0], 0, 1) == "f") {
-                $formated_ticker['ticker_type'] = 'funding';
-                $formated_ticker['symbol'] = $ticker_pure[0];
-                $formated_ticker['market'] = substr($ticker_pure[0], 1, strlen($ticker_pure[0]) - 1);
-                $formated_ticker['bid'] = $ticker_pure[1];
-                $formated_ticker['bid_size'] = $ticker_pure[2];
-                $formated_ticker['bid_period'] = $ticker_pure[3];
-                $formated_ticker['ask'] = $ticker_pure[4];
-                $formated_ticker['ask_size'] = $ticker_pure[5];
-                $formated_ticker['ask_period'] = $ticker_pure[6];
-                $formated_ticker['daily_change'] = $ticker_pure[7];
-                $formated_ticker['daily_change_perc'] = $ticker_pure[8];
-                $formated_ticker['last_price'] = $ticker_pure[9];
-                $formated_ticker['volume'] = $ticker_pure[10];
-                $formated_ticker['hight'] = $ticker_pure[11];
-                $formated_ticker['low'] = $ticker_pure[12];
+                $formatted_ticker['ticker_type'] = 'funding';
+                $formatted_ticker['symbol'] = $ticker_pure[0];
+                $formatted_ticker['market'] = substr($ticker_pure[0], 1, strlen($ticker_pure[0]) - 1);
+                $formatted_ticker['bid'] = $ticker_pure[1];
+                $formatted_ticker['bid_size'] = $ticker_pure[2];
+                $formatted_ticker['bid_period'] = $ticker_pure[3];
+                $formatted_ticker['ask'] = $ticker_pure[4];
+                $formatted_ticker['ask_size'] = $ticker_pure[5];
+                $formatted_ticker['ask_period'] = $ticker_pure[6];
+                $formatted_ticker['daily_change'] = $ticker_pure[7];
+                $formatted_ticker['daily_change_perc'] = $ticker_pure[8];
+                $formatted_ticker['last_price'] = $ticker_pure[9];
+                $formatted_ticker['volume'] = $ticker_pure[10];
+                $formatted_ticker['hight'] = $ticker_pure[11];
+                $formatted_ticker['low'] = $ticker_pure[12];
             }
-            array_push($tickers, $formated_ticker);
+            array_push($tickers, $formatted_ticker);
         }
 
         return $tickers;
