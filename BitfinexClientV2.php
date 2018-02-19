@@ -144,6 +144,25 @@ class BitfinexClientV2
         return $this->send_public_request($request, $data);
     }
 
+    /**
+     * Get Books
+     *
+     * The Order Books channel allow you to keep track of the state of the Bitfinex order book.
+     * It is provided on a price aggregated basis, with customizable precision.
+     *
+     * @param string $symbol e.g. 'tBTCUSD', 'fUSD'
+     * @param string $precision Level of price aggregation (P0, P1, P2, P3, R0)
+     * @param int $len Number of price points ("25", "100")
+     * @return mixed
+     */
+    public function get_books($symbol = 'tBTCUSD', $precision = 'P0', $len = 25) {
+        $params = array($symbol, $precision);
+        $request = $this->endpoint('book', $params);
+        $data = array('len' => $len);
+
+        return $this->send_public_request($request, $data);
+    }
+
 
 
     /**
