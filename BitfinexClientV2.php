@@ -68,6 +68,12 @@ class BitfinexClientV2
         return $this->send_public_request($request, $data);
     }
 
+    /**
+     * Formatted Tickers array
+     *
+     * @param array $symbols
+     * @return array
+     */
     public function get_tickers_formatted($symbols = array('tBTCUSD'))
     {
         $request = $this->endpoint('tickers');
@@ -83,6 +89,37 @@ class BitfinexClientV2
 
         return $tickers;
     }
+
+    /**
+     * The ticker is a high level overview of the state of the market.
+     * It shows you the current best bid and ask, as well as the last trade price.
+     * It also includes information such as daily volume and how much the price has moved over the last day.
+     *
+     * @param string $symbol
+     * @return mixed
+     */
+    public function get_ticker($symbol = 'tBTCUSD')
+    {
+        $request = $this->endpoint('ticker', $symbol);
+
+        return $this->send_public_request($request);
+    }
+
+    /**
+     * Formatted Ticker
+     *
+     * @param string $symbol
+     * @return array
+     */
+    public function get_ticker_formatted($symbol = 'tBTCUSD')
+    {
+        $request = $this->endpoint('ticker', $symbol);
+        $ticker = $this->send_public_request($request);
+        array_unshift($ticker, $symbol);
+        return $this->format_ticker($ticker);
+    }
+
+
 
     /**
      * Format Ticker Data
@@ -126,9 +163,6 @@ class BitfinexClientV2
 
         return $formatted_ticker;
     }
-
-    
-
 
     /**
      * Endpoint
