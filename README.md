@@ -141,4 +141,53 @@ array (size=3)
 ```
 </details>
 
-TODO: add more public endpoints.
+#### Get Ticker (for single symbol)
+It shows you the current best bid and ask, as well as the last trade price. It also includes information such as daily volume and how much the price has moved over the last day.
+```php
+$tickers = $bitfinex_client->get_ticker('tBTCUSD');
+```
+<details>
+ <summary>View Response</summary>
+
+```
+array (size=10)
+  0 => int 11181
+  1 => float 64.42901797
+  2 => int 11182
+  3 => float 49.18583408
+  4 => int 426
+  5 => float 0.0396
+  6 => int 11181
+  7 => float 50377.98971561
+  8 => int 11250
+  9 => int 10308
+```
+</details>
+
+#### Get Formatted Ticker (for single symbol)
+Formatted array
+```php
+$tickers = $bitfinex_client->get_ticker_formatted('tBTCUSD');
+```
+<details>
+ <summary>View Response</summary>
+
+```
+array (size=13)
+  'ticker_type' => string 'trading' (length=7)
+  'symbol' => string 'tBTCUSD' (length=7)
+  'market' => string 'BTCUSD' (length=6)
+  'bid' => int 11201
+  'bid_size' => float 173.3148252
+  'ask' => int 11202
+  'ask_size' => float 48.16349733
+  'daily_change' => int 454
+  'daily_change_perc' => float 0.0422
+  'last_price' => int 11201
+  'volume' => float 50476.53534813
+  'hight' => int 11250
+  'low' => int 10308
+```
+</details>
+
+#####TODO: add readme and 2 public get endpoints.
