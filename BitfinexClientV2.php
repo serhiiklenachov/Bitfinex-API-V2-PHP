@@ -119,6 +119,31 @@ class BitfinexClientV2
         return $this->format_ticker($ticker);
     }
 
+    /**
+     * Get Trades
+     *
+     * Trades endpoint includes all the pertinent details of the trade, such as price, size and time.
+     *
+     * @param string $symbol e.g. 'tBTCUSD'
+     * @param null $limit Number of records
+     * @param null $start Millisecond start time
+     * @param null $end Millisecond end time
+     * @param int $sort if = 1 it sorts results returned with old > new
+     * @return mixed
+     */
+    public function get_trades($symbol = 'tBTCUSD', $limit = null, $start = null, $end = null, $sort = -1) {
+        $params = array($symbol, 'hist');
+        $request = $this->endpoint('trades', $params);
+        $data = array(
+            'limit' => $limit,
+            'start' => $start,
+            'end' => $end,
+            'sort' => $sort
+        );
+
+        return $this->send_public_request($request, $data);
+    }
+
 
 
     /**
